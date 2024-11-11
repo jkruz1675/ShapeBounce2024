@@ -1,0 +1,29 @@
+﻿@page "/"
+@using Blazor.Extensions
+@using Blazor.Extensions.Canvas
+@using Blazor.Extensions.Canvas.Canvas2D
+
+<PageTitle>Home</PageTitle>
+
+<BECanvas Width="600" Height="600" @ref="canvasReference" />
+<script src="_content/Blazor.Extensions.Canvas/blazor.extensions.canvas.js"></script>
+
+@code {
+    // All C# Code for this page
+    BECanvasComponent canvasReference;
+    Canvas2DContext context;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        context = await canvasReference.CreateCanvas2DAsync();
+
+        // Test this by putting some drawing code here that we won't use after testing
+        await context.FillRectAsync(0, 0, 100, 100);
+    }
+    protected override void OnInitialized()
+    {
+        // Runs once when the page is first accessed
+       
+    }
+
+}   
